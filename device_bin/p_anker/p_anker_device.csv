@@ -1,0 +1,4 @@
+key,type,encoding,value
+device,namespace,,
+sn,data,string,"SN666666"
+prty,data,u8,2

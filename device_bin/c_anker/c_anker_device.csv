@@ -1,0 +1,5 @@
+key,type,encoding,value
+device,namespace,,
+sn,data,string,"SN123123"
+prty,data,u8,1
+hbst,data,string,"61fed7515adf4a2e1edcb0511a844b99"
