@@ -31,8 +31,8 @@
 ESP_EVENT_DEFINE_BASE(INTERNAL_WIFI_EVENT);
 
 
-#define SSID ("WLAN1-D441TD")
-#define PASSWORD ("AGjuKloi03")
+#define SSID ("")
+#define PASSWORD ("")
 
 
 #define WIFI_CONNECT_WAIT                           (pdMS_TO_TICKS(8000))

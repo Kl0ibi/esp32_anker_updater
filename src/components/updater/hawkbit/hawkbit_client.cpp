@@ -442,10 +442,8 @@ uint8_t http_request_type_get(const char *url, uint8_t **data, uint32_t *len) {
 
 	esp_http_client_config_t http_client_config = {
 			.url = url,
-			//.cert_pem = (char *)hawkbit_server_cert_pem,
 			.method = HTTP_METHOD_GET,
 			.timeout_ms = HAWKBIT_GET_TIMEOUT,
-			//.user_agent = CONFIG_HTTP_CLIENT_USER_AGENT
 	};
 
 	esp_http_client_handle_t http_client_handle = esp_http_client_init(&http_client_config);
@@ -645,23 +643,6 @@ uint8_t http_request_download_data(const char *url, const hawkbit_client_module_
 				break;
 			}
 		}
-		/*else if (module == HAWKBIT_CLIENT_MODULE_TYPE_CELLULAR_MODULE) {
-			LOGD(TAG, "Write chunk with size: %ld for cellular module to cellular component", size);
-			if (cellular_write_update_file((char *)buffer, size) != CELLULAR_OK) {
-                LOGE(TAG, "Failed to write to cellular module update file");
-				err = HAWKBITCLIENT_ERR_CELLULAR;
-				goto cleanup;
-            }
-		}
-		else {
-			LOGD(TAG, "Write chunk with size: %ld for controller to file: %s", size, filename);
-			err = datastorage_write_chunked_binary_data_to_file_in_partition(filename, 0xFFFFFFFF, buffer, (uint32_t *)&size, false);
-			if (err != DATASTORAGE_OK) {
-				LOGE(TAG, "Failed to write data for controller to file: %s", filename);
-				err = HAWKBITCLIENT_ERR_GENERAL;
-				break;
-			}
-		}*/
 	}
 
 cleanup:
@@ -679,13 +660,6 @@ cleanup:
 			}
 		}
 	}
-	/*else if (module == HAWKBIT_CLIENT_MODULE_TYPE_CELLULAR_MODULE) {
-		if (cellular_stop_update_download_process() != CELLULAR_OK) {
-			LOGE(TAG, "Failed to stop cellular module update download process");
-			err = HAWKBITCLIENT_ERR_CELLULAR;
-		}
-		cellular_set_back_into_normal_mode();
-	}*/
 
 	ret = esp_http_client_close(http_client_handle);
 	if (ret != ESP_OK) {
