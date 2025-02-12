@@ -1,9 +1,6 @@
-
-#include "api.h"
-#include "esp_wifi_default.h"
-#include "freertos/FreeRTOS.h"
-#include "freertos/event_groups.h"
-#include "freertos/task.h"
+#include <freertos/FreeRTOS.h>
+#include <freertos/event_groups.h>
+#include <freertos/task.h>
 #include <string.h>
 #include <stdio.h>
 #include <stdlib.h>
@@ -13,19 +10,14 @@
 #include <esp_event.h>
 #include <esp_wifi.h>
 #include <esp_netif.h>
-//#include "nvstorageman.h"
 #include <lwip/ip4_addr.h>
 #include <lwip/netif.h>
-//#include <nrgapi.h>
+#include <esp_wifi_default.h>
+#include <esp_wifi_types.h>
 #include "wifi.h"
 #include "system.h"
 #include "logging.h"
 #include "api.h"
-//#include "nrgwifi_storage.h"
-//
-//
-#include "esp_netif.h"
-#include "esp_wifi_types.h"
 #include "types.h"
 
 ESP_EVENT_DEFINE_BASE(INTERNAL_WIFI_EVENT);
@@ -188,7 +180,6 @@ static uint8_t change_config(bool sta, wifi_handling_events cur_event) {
 }
 
 
-
 static void wifi_handling_task(void *pvParameters) {
 	uint8_t rc;
 	EventBits_t ux_bits;
@@ -333,6 +324,7 @@ static void wifi_handling_task(void *pvParameters) {
 	vTaskDelete(NULL);
 }
 
+
 static uint8_t wifi_start() {
 	uint8_t rc;
 	BaseType_t tr;
@@ -454,7 +446,6 @@ bool wifi_get_connection_status() {
 }
 
 
-
 // if ssid is null connec to default AP
 uint8_t wifi_connect_to_ap(const char *req_ssid, const char *req_password) {
 	uint8_t ux_bits;
@@ -511,9 +502,6 @@ uint8_t wifi_init() {
 	if (wifi_client) {
 		return WIFI_ALREADY_INITIALIZED;
 	}
-
-
-	// Init WIFI wifi_client
 	if ((wifi_client = (wifi_client_t *)calloc(1, sizeof(wifi_client_t))) == NULL) {
 		return WIFI_ERROR;
 	}
