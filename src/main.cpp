@@ -8,9 +8,6 @@ static const char *TAG = "main";
 
 void setup() {
     bool startup_ok;
-    device_type_t device_type;
-    serial_number_t serial_number;
-    software_version_t version;
     
     // logs
     Serial.begin(115200);
