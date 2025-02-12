@@ -3,3 +3,4 @@
 .cache/*
 .clangd
 .clangd-tidy
+compile_commands.json
